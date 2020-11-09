@@ -15,42 +15,40 @@ for (key in student) {
 
 var classe = [
   {
-    "Nome": "Luca",
-    "Cognome": "Bianchi",
-    "Età": 30,
+    Nome: "Luca",
+    Cognome: "Bianchi",
+    Età: 30,
   },
   {
-    "Nome": "Marco",
-    "Cognome": "Paoletti",
-    "Età": 20,
+    Nome: "Marco",
+    Cognome: "Paoletti",
+    Età: 20,
   },
   {
-    "Nome": "Giulia",
-    "Cognome": "Rossi",
-    "Età": 40,
+    Nome: "Giulia",
+    Cognome: "Rossi",
+    Età: 40,
   },
 ];
 
-
-
-
-
 $("#add").click(function () {
-    var newStud = {}
-    
-    var newName = prompt("Inserisci il nome dello studente");
-    newStud.Nome = newName;
-    var newSurname = prompt("Inserisci il cognome dello studente")
-    newStud["Cognome"] = newSurname;
-    var newAge = prompt("Inserisci età dello studente")
-    newStud["Età"] = newAge;
-    classe.push(newStud);
-
+  var newStud = {};
+  var newName = prompt("Inserisci il nome dello studente");
+  newStud.Nome = newName;
+  var newSurname = prompt("Inserisci il cognome dello studente");
+  newStud["Cognome"] = newSurname;
+  var newAge = prompt("Inserisci età dello studente");
+  while (isNaN(newAge)) {
+    newAge = prompt("Non hai inserito un numero");
+  }
+  newStud["Età"] = newAge;
+  classe.push(newStud);
 });
 
-
+var toggle = false;
 
 $("#show-class").click(function () {
+  if (!toggle) {
     for (var i = 0; i < classe.length; i++) {
       $("#second-print").append(
         "Il nome dello studente è " +
@@ -60,7 +58,10 @@ $("#show-class").click(function () {
           "il cognome è " +
           "<br>" +
           classe[i].Cognome +
+          "<br>" +
           "<br>"
       );
+      toggle = true;
     }
-})
+  }
+});
